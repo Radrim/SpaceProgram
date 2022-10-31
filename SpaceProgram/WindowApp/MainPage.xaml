@@ -1,0 +1,30 @@
+﻿<Page x:Class="SpaceProgram.WindowApp.MainPage" Background="White"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpaceProgram.WindowApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage" Loaded="Page_Loaded">
+
+    <Grid>
+        <Button Content="ЗАПУСК" HorizontalAlignment="Left" Margin="627,359,0,0" VerticalAlignment="Top" Height="63" Width="163"/>
+        <ComboBox x:Name="cb_employees" HorizontalAlignment="Left" Margin="143,6,0,0" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="lb_currentCrew" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="298,10,218,329"/>
+        <Button Content="Добавить в экипаж" HorizontalAlignment="Left" Margin="143,46,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
+        <ComboBox x:Name="cb_cosmodrome" HorizontalAlignment="Left" Margin="143,92,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cb_planet" HorizontalAlignment="Left" Margin="143,135,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cb_spaceObject" HorizontalAlignment="Left" Margin="143,184,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="71,6,0,0" TextWrapping="Wrap" Text="Crew" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="48,95,0,0" TextWrapping="Wrap" Text="Cosmodrome" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="67,138,0,0" TextWrapping="Wrap" Text="Planet" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="67,187,0,0" TextWrapping="Wrap" Text="SpaceObject" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cb_advertisment" HorizontalAlignment="Left" Margin="143,250,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="63,253,0,0" TextWrapping="Wrap" Text="Advertisment" VerticalAlignment="Top" RenderTransformOrigin="0.552,-0.664"/>
+        <ListBox x:Name="lb_currentCrew_Copy" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="298,10,218,329"/>
+        <ListBox x:Name="lb_currentAdvertisment" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="298,161,218,178"/>
+        <Button Content="Добавить рекламу" HorizontalAlignment="Left" Margin="143,295,0,0" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Page>

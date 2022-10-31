@@ -1,0 +1,920 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SpaceProgramModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdvertisingAgent">
+          <Key>
+            <PropertyRef Name="AdvertisingAgent_ID" />
+          </Key>
+          <Property Name="AdvertisingAgent_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Advertisment">
+          <Key>
+            <PropertyRef Name="Advertisment_ID" />
+          </Key>
+          <Property Name="Advertisment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Income" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="AdvertisingAgent_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Balance">
+          <Key>
+            <PropertyRef Name="Balance_ID" />
+          </Key>
+          <Property Name="Balance_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TotalCash" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cosmodrome">
+          <Key>
+            <PropertyRef Name="Cosmodrome_ID" />
+          </Key>
+          <Property Name="Cosmodrome_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Crew">
+          <Key>
+            <PropertyRef Name="Crew_ID" />
+          </Key>
+          <Property Name="Crew_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Crew_Employee">
+          <Key>
+            <PropertyRef Name="Crew_Employee_ID" />
+          </Key>
+          <Property Name="Crew_Employee_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Crew_ID" Type="int" Nullable="false" />
+          <Property Name="Employee_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role_ID" Type="int" Nullable="false" />
+          <Property Name="Qualification_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="Flight_ID" />
+          </Key>
+          <Property Name="Flight_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Crew_ID" Type="int" Nullable="false" />
+          <Property Name="Route_ID" Type="int" Nullable="false" />
+          <Property Name="SpaceObject_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flight_Advertisment">
+          <Key>
+            <PropertyRef Name="Flight_Advertisment_ID" />
+          </Key>
+          <Property Name="Flight_Advertisment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Flight_ID" Type="int" Nullable="false" />
+          <Property Name="Advertisment_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Planet">
+          <Key>
+            <PropertyRef Name="Planet_ID" />
+          </Key>
+          <Property Name="Planet_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="Qualification_ID" />
+          </Key>
+          <Property Name="Qualification_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Route_ID" />
+          </Key>
+          <Property Name="Route_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DestinationPlanet_ID" Type="int" Nullable="false" />
+          <Property Name="StartingCosmodrome_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpaceObject">
+          <Key>
+            <PropertyRef Name="SpaceObject_Id" />
+          </Key>
+          <Property Name="SpaceObject_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="MaxSpeed" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Fuel" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Type_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpaceObjectType">
+          <Key>
+            <PropertyRef Name="SpaceObjectType_ID" />
+          </Key>
+          <Property Name="SpaceObjectType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Advertisment_AdvertisingAgent">
+          <End Role="AdvertisingAgent" Type="Self.AdvertisingAgent" Multiplicity="1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertisingAgent">
+              <PropertyRef Name="AdvertisingAgent_ID" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="AdvertisingAgent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Crew_Employee_Crew">
+          <End Role="Crew" Type="Self.Crew" Multiplicity="1" />
+          <End Role="Crew_Employee" Type="Self.Crew_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crew">
+              <PropertyRef Name="Crew_ID" />
+            </Principal>
+            <Dependent Role="Crew_Employee">
+              <PropertyRef Name="Crew_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Crew_Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Crew_Employee" Type="Self.Crew_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Crew_Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Qualification">
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualification">
+              <PropertyRef Name="Qualification_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Qualification_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Advertisment_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
+          <End Role="Flight_Advertisment" Type="Self.Flight_Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Advertisment_ID" />
+            </Principal>
+            <Dependent Role="Flight_Advertisment">
+              <PropertyRef Name="Advertisment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Advertisment_Flight">
+          <End Role="Flight" Type="Self.Flight" Multiplicity="1" />
+          <End Role="Flight_Advertisment" Type="Self.Flight_Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="Flight_ID" />
+            </Principal>
+            <Dependent Role="Flight_Advertisment">
+              <PropertyRef Name="Flight_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Crew">
+          <End Role="Crew" Type="Self.Crew" Multiplicity="1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crew">
+              <PropertyRef Name="Crew_ID" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="Crew_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Route_ID" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="Route_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_SpaceObject">
+          <End Role="SpaceObject" Type="Self.SpaceObject" Multiplicity="1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceObject">
+              <PropertyRef Name="SpaceObject_Id" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="SpaceObject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Route_Cosmodrome">
+          <End Role="Cosmodrome" Type="Self.Cosmodrome" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosmodrome">
+              <PropertyRef Name="Cosmodrome_ID" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="StartingCosmodrome_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Route_Planet">
+          <End Role="Planet" Type="Self.Planet" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planet">
+              <PropertyRef Name="Planet_ID" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="DestinationPlanet_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpaceObject_SpaceObjectType">
+          <End Role="SpaceObjectType" Type="Self.SpaceObjectType" Multiplicity="1" />
+          <End Role="SpaceObject" Type="Self.SpaceObject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceObjectType">
+              <PropertyRef Name="SpaceObjectType_ID" />
+            </Principal>
+            <Dependent Role="SpaceObject">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SpaceProgramModelContainer">
+          <EntitySet Name="AdvertisingAgent" EntityType="Self.AdvertisingAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Advertisment" EntityType="Self.Advertisment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Balance" EntityType="Self.Balance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cosmodrome" EntityType="Self.Cosmodrome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Crew" EntityType="Self.Crew" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Crew_Employee" EntityType="Self.Crew_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flight" EntityType="Self.Flight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flight_Advertisment" EntityType="Self.Flight_Advertisment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planet" EntityType="Self.Planet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Qualification" EntityType="Self.Qualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpaceObject" EntityType="Self.SpaceObject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpaceObjectType" EntityType="Self.SpaceObjectType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Advertisment_AdvertisingAgent" Association="Self.FK_Advertisment_AdvertisingAgent">
+            <End Role="AdvertisingAgent" EntitySet="AdvertisingAgent" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Crew_Employee_Crew" Association="Self.FK_Crew_Employee_Crew">
+            <End Role="Crew" EntitySet="Crew" />
+            <End Role="Crew_Employee" EntitySet="Crew_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Crew_Employee_Employee" Association="Self.FK_Crew_Employee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Crew_Employee" EntitySet="Crew_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Qualification" Association="Self.FK_Employee_Qualification">
+            <End Role="Qualification" EntitySet="Qualification" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Advertisment_Advertisment" Association="Self.FK_Flight_Advertisment_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisment" />
+            <End Role="Flight_Advertisment" EntitySet="Flight_Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Advertisment_Flight" Association="Self.FK_Flight_Advertisment_Flight">
+            <End Role="Flight" EntitySet="Flight" />
+            <End Role="Flight_Advertisment" EntitySet="Flight_Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Crew" Association="Self.FK_Flight_Crew">
+            <End Role="Crew" EntitySet="Crew" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Route" Association="Self.FK_Flight_Route">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_SpaceObject" Association="Self.FK_Flight_SpaceObject">
+            <End Role="SpaceObject" EntitySet="SpaceObject" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Route_Cosmodrome" Association="Self.FK_Route_Cosmodrome">
+            <End Role="Cosmodrome" EntitySet="Cosmodrome" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Route_Planet" Association="Self.FK_Route_Planet">
+            <End Role="Planet" EntitySet="Planet" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpaceObject_SpaceObjectType" Association="Self.FK_SpaceObject_SpaceObjectType">
+            <End Role="SpaceObjectType" EntitySet="SpaceObjectType" />
+            <End Role="SpaceObject" EntitySet="SpaceObject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SpaceProgramModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdvertisingAgent">
+          <Key>
+            <PropertyRef Name="AdvertisingAgent_ID" />
+          </Key>
+          <Property Name="AdvertisingAgent_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.FK_Advertisment_AdvertisingAgent" FromRole="AdvertisingAgent" ToRole="Advertisment" />
+        </EntityType>
+        <EntityType Name="Advertisment">
+          <Key>
+            <PropertyRef Name="Advertisment_ID" />
+          </Key>
+          <Property Name="Advertisment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Income" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="AdvertisingAgent_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdvertisingAgent" Relationship="Self.FK_Advertisment_AdvertisingAgent" FromRole="Advertisment" ToRole="AdvertisingAgent" />
+          <NavigationProperty Name="Flight_Advertisment" Relationship="Self.FK_Flight_Advertisment_Advertisment" FromRole="Advertisment" ToRole="Flight_Advertisment" />
+        </EntityType>
+        <EntityType Name="Balance">
+          <Key>
+            <PropertyRef Name="Balance_ID" />
+          </Key>
+          <Property Name="Balance_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TotalCash" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cosmodrome">
+          <Key>
+            <PropertyRef Name="Cosmodrome_ID" />
+          </Key>
+          <Property Name="Cosmodrome_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Route" Relationship="Self.FK_Route_Cosmodrome" FromRole="Cosmodrome" ToRole="Route" />
+        </EntityType>
+        <EntityType Name="Crew">
+          <Key>
+            <PropertyRef Name="Crew_ID" />
+          </Key>
+          <Property Name="Crew_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Crew_Employee" Relationship="Self.FK_Crew_Employee_Crew" FromRole="Crew" ToRole="Crew_Employee" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_Crew" FromRole="Crew" ToRole="Flight" />
+        </EntityType>
+        <EntityType Name="Crew_Employee">
+          <Key>
+            <PropertyRef Name="Crew_Employee_ID" />
+          </Key>
+          <Property Name="Crew_Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Crew_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Crew" Relationship="Self.FK_Crew_Employee_Crew" FromRole="Crew_Employee" ToRole="Crew" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Crew_Employee_Employee" FromRole="Crew_Employee" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_ID" Type="Int32" Nullable="false" />
+          <Property Name="Qualification_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Crew_Employee" Relationship="Self.FK_Crew_Employee_Employee" FromRole="Employee" ToRole="Crew_Employee" />
+          <NavigationProperty Name="Qualification" Relationship="Self.FK_Employee_Qualification" FromRole="Employee" ToRole="Qualification" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="Flight_ID" />
+          </Key>
+          <Property Name="Flight_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Crew_ID" Type="Int32" Nullable="false" />
+          <Property Name="Route_ID" Type="Int32" Nullable="false" />
+          <Property Name="SpaceObject_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Crew" Relationship="Self.FK_Flight_Crew" FromRole="Flight" ToRole="Crew" />
+          <NavigationProperty Name="Flight_Advertisment" Relationship="Self.FK_Flight_Advertisment_Flight" FromRole="Flight" ToRole="Flight_Advertisment" />
+          <NavigationProperty Name="Route" Relationship="Self.FK_Flight_Route" FromRole="Flight" ToRole="Route" />
+          <NavigationProperty Name="SpaceObject" Relationship="Self.FK_Flight_SpaceObject" FromRole="Flight" ToRole="SpaceObject" />
+        </EntityType>
+        <EntityType Name="Flight_Advertisment">
+          <Key>
+            <PropertyRef Name="Flight_Advertisment_ID" />
+          </Key>
+          <Property Name="Flight_Advertisment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Flight_ID" Type="Int32" Nullable="false" />
+          <Property Name="Advertisment_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.FK_Flight_Advertisment_Advertisment" FromRole="Flight_Advertisment" ToRole="Advertisment" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_Advertisment_Flight" FromRole="Flight_Advertisment" ToRole="Flight" />
+        </EntityType>
+        <EntityType Name="Planet">
+          <Key>
+            <PropertyRef Name="Planet_ID" />
+          </Key>
+          <Property Name="Planet_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Route" Relationship="Self.FK_Route_Planet" FromRole="Planet" ToRole="Route" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="Qualification_ID" />
+          </Key>
+          <Property Name="Qualification_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Qualification" FromRole="Qualification" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Route_ID" />
+          </Key>
+          <Property Name="Route_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DestinationPlanet_ID" Type="Int32" Nullable="false" />
+          <Property Name="StartingCosmodrome_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cosmodrome" Relationship="Self.FK_Route_Cosmodrome" FromRole="Route" ToRole="Cosmodrome" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_Route" FromRole="Route" ToRole="Flight" />
+          <NavigationProperty Name="Planet" Relationship="Self.FK_Route_Planet" FromRole="Route" ToRole="Planet" />
+        </EntityType>
+        <EntityType Name="SpaceObject">
+          <Key>
+            <PropertyRef Name="SpaceObject_Id" />
+          </Key>
+          <Property Name="SpaceObject_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="MaxSpeed" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Fuel" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Type_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_SpaceObject" FromRole="SpaceObject" ToRole="Flight" />
+          <NavigationProperty Name="SpaceObjectType" Relationship="Self.FK_SpaceObject_SpaceObjectType" FromRole="SpaceObject" ToRole="SpaceObjectType" />
+        </EntityType>
+        <EntityType Name="SpaceObjectType">
+          <Key>
+            <PropertyRef Name="SpaceObjectType_ID" />
+          </Key>
+          <Property Name="SpaceObjectType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SpaceObject" Relationship="Self.FK_SpaceObject_SpaceObjectType" FromRole="SpaceObjectType" ToRole="SpaceObject" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Advertisment_AdvertisingAgent">
+          <End Role="AdvertisingAgent" Type="Self.AdvertisingAgent" Multiplicity="1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertisingAgent">
+              <PropertyRef Name="AdvertisingAgent_ID" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="AdvertisingAgent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Advertisment_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
+          <End Role="Flight_Advertisment" Type="Self.Flight_Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Advertisment_ID" />
+            </Principal>
+            <Dependent Role="Flight_Advertisment">
+              <PropertyRef Name="Advertisment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Route_Cosmodrome">
+          <End Role="Cosmodrome" Type="Self.Cosmodrome" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosmodrome">
+              <PropertyRef Name="Cosmodrome_ID" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="StartingCosmodrome_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Crew_Employee_Crew">
+          <End Role="Crew" Type="Self.Crew" Multiplicity="1" />
+          <End Role="Crew_Employee" Type="Self.Crew_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crew">
+              <PropertyRef Name="Crew_ID" />
+            </Principal>
+            <Dependent Role="Crew_Employee">
+              <PropertyRef Name="Crew_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Crew">
+          <End Role="Crew" Type="Self.Crew" Multiplicity="1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crew">
+              <PropertyRef Name="Crew_ID" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="Crew_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Crew_Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Crew_Employee" Type="Self.Crew_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Crew_Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Qualification">
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualification">
+              <PropertyRef Name="Qualification_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Qualification_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Advertisment_Flight">
+          <End Role="Flight" Type="Self.Flight" Multiplicity="1" />
+          <End Role="Flight_Advertisment" Type="Self.Flight_Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="Flight_ID" />
+            </Principal>
+            <Dependent Role="Flight_Advertisment">
+              <PropertyRef Name="Flight_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Route_ID" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="Route_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_SpaceObject">
+          <End Role="SpaceObject" Type="Self.SpaceObject" Multiplicity="1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceObject">
+              <PropertyRef Name="SpaceObject_Id" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="SpaceObject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Route_Planet">
+          <End Role="Planet" Type="Self.Planet" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planet">
+              <PropertyRef Name="Planet_ID" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="DestinationPlanet_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpaceObject_SpaceObjectType">
+          <End Role="SpaceObjectType" Type="Self.SpaceObjectType" Multiplicity="1" />
+          <End Role="SpaceObject" Type="Self.SpaceObject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceObjectType">
+              <PropertyRef Name="SpaceObjectType_ID" />
+            </Principal>
+            <Dependent Role="SpaceObject">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SpaceProgramEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdvertisingAgent" EntityType="Self.AdvertisingAgent" />
+          <EntitySet Name="Advertisment" EntityType="Self.Advertisment" />
+          <EntitySet Name="Balance" EntityType="Self.Balance" />
+          <EntitySet Name="Cosmodrome" EntityType="Self.Cosmodrome" />
+          <EntitySet Name="Crew" EntityType="Self.Crew" />
+          <EntitySet Name="Crew_Employee" EntityType="Self.Crew_Employee" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Flight" EntityType="Self.Flight" />
+          <EntitySet Name="Flight_Advertisment" EntityType="Self.Flight_Advertisment" />
+          <EntitySet Name="Planet" EntityType="Self.Planet" />
+          <EntitySet Name="Qualification" EntityType="Self.Qualification" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Route" EntityType="Self.Route" />
+          <EntitySet Name="SpaceObject" EntityType="Self.SpaceObject" />
+          <EntitySet Name="SpaceObjectType" EntityType="Self.SpaceObjectType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Advertisment_AdvertisingAgent" Association="Self.FK_Advertisment_AdvertisingAgent">
+            <End Role="AdvertisingAgent" EntitySet="AdvertisingAgent" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Advertisment_Advertisment" Association="Self.FK_Flight_Advertisment_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisment" />
+            <End Role="Flight_Advertisment" EntitySet="Flight_Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Route_Cosmodrome" Association="Self.FK_Route_Cosmodrome">
+            <End Role="Cosmodrome" EntitySet="Cosmodrome" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Crew_Employee_Crew" Association="Self.FK_Crew_Employee_Crew">
+            <End Role="Crew" EntitySet="Crew" />
+            <End Role="Crew_Employee" EntitySet="Crew_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Crew" Association="Self.FK_Flight_Crew">
+            <End Role="Crew" EntitySet="Crew" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Crew_Employee_Employee" Association="Self.FK_Crew_Employee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Crew_Employee" EntitySet="Crew_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Qualification" Association="Self.FK_Employee_Qualification">
+            <End Role="Qualification" EntitySet="Qualification" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Advertisment_Flight" Association="Self.FK_Flight_Advertisment_Flight">
+            <End Role="Flight" EntitySet="Flight" />
+            <End Role="Flight_Advertisment" EntitySet="Flight_Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Route" Association="Self.FK_Flight_Route">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_SpaceObject" Association="Self.FK_Flight_SpaceObject">
+            <End Role="SpaceObject" EntitySet="SpaceObject" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Route_Planet" Association="Self.FK_Route_Planet">
+            <End Role="Planet" EntitySet="Planet" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpaceObject_SpaceObjectType" Association="Self.FK_SpaceObject_SpaceObjectType">
+            <End Role="SpaceObjectType" EntitySet="SpaceObjectType" />
+            <End Role="SpaceObject" EntitySet="SpaceObject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SpaceProgramModelContainer" CdmEntityContainer="SpaceProgramEntities">
+          <EntitySetMapping Name="AdvertisingAgent">
+            <EntityTypeMapping TypeName="SpaceProgramModel.AdvertisingAgent">
+              <MappingFragment StoreEntitySet="AdvertisingAgent">
+                <ScalarProperty Name="AdvertisingAgent_ID" ColumnName="AdvertisingAgent_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advertisment">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Advertisment">
+              <MappingFragment StoreEntitySet="Advertisment">
+                <ScalarProperty Name="Advertisment_ID" ColumnName="Advertisment_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+                <ScalarProperty Name="AdvertisingAgent_ID" ColumnName="AdvertisingAgent_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Balance">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Balance">
+              <MappingFragment StoreEntitySet="Balance">
+                <ScalarProperty Name="Balance_ID" ColumnName="Balance_ID" />
+                <ScalarProperty Name="TotalCash" ColumnName="TotalCash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cosmodrome">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Cosmodrome">
+              <MappingFragment StoreEntitySet="Cosmodrome">
+                <ScalarProperty Name="Cosmodrome_ID" ColumnName="Cosmodrome_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Crew">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Crew">
+              <MappingFragment StoreEntitySet="Crew">
+                <ScalarProperty Name="Crew_ID" ColumnName="Crew_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Crew_Employee">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Crew_Employee">
+              <MappingFragment StoreEntitySet="Crew_Employee">
+                <ScalarProperty Name="Crew_Employee_ID" ColumnName="Crew_Employee_ID" />
+                <ScalarProperty Name="Crew_ID" ColumnName="Crew_ID" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Qualification_ID" ColumnName="Qualification_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flight">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Flight">
+              <MappingFragment StoreEntitySet="Flight">
+                <ScalarProperty Name="Flight_ID" ColumnName="Flight_ID" />
+                <ScalarProperty Name="Crew_ID" ColumnName="Crew_ID" />
+                <ScalarProperty Name="Route_ID" ColumnName="Route_ID" />
+                <ScalarProperty Name="SpaceObject_ID" ColumnName="SpaceObject_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flight_Advertisment">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Flight_Advertisment">
+              <MappingFragment StoreEntitySet="Flight_Advertisment">
+                <ScalarProperty Name="Flight_Advertisment_ID" ColumnName="Flight_Advertisment_ID" />
+                <ScalarProperty Name="Flight_ID" ColumnName="Flight_ID" />
+                <ScalarProperty Name="Advertisment_ID" ColumnName="Advertisment_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Planet">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Planet">
+              <MappingFragment StoreEntitySet="Planet">
+                <ScalarProperty Name="Planet_ID" ColumnName="Planet_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Qualification">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Qualification">
+              <MappingFragment StoreEntitySet="Qualification">
+                <ScalarProperty Name="Qualification_ID" ColumnName="Qualification_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Route">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Route">
+              <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="Route_ID" ColumnName="Route_ID" />
+                <ScalarProperty Name="DestinationPlanet_ID" ColumnName="DestinationPlanet_ID" />
+                <ScalarProperty Name="StartingCosmodrome_ID" ColumnName="StartingCosmodrome_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpaceObject">
+            <EntityTypeMapping TypeName="SpaceProgramModel.SpaceObject">
+              <MappingFragment StoreEntitySet="SpaceObject">
+                <ScalarProperty Name="SpaceObject_Id" ColumnName="SpaceObject_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="MaxSpeed" ColumnName="MaxSpeed" />
+                <ScalarProperty Name="Fuel" ColumnName="Fuel" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpaceObjectType">
+            <EntityTypeMapping TypeName="SpaceProgramModel.SpaceObjectType">
+              <MappingFragment StoreEntitySet="SpaceObjectType">
+                <ScalarProperty Name="SpaceObjectType_ID" ColumnName="SpaceObjectType_ID" />
+                <ScalarProperty Name="Type_Name" ColumnName="Type_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SpaceProgramModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
