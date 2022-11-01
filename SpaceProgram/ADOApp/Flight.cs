@@ -25,10 +25,10 @@ namespace SpaceProgram.ADOApp
         public int Route_ID { get; set; }
         public int SpaceObject_ID { get; set; }
     
-        public virtual Crew Crew { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Flight_Advertisment> Flight_Advertisment { get; set; }
         public virtual Route Route { get; set; }
         public virtual SpaceObject SpaceObject { get; set; }
+        public virtual Crew Crew { get; set; }
     }
 }

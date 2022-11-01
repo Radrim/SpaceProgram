@@ -18,7 +18,7 @@ namespace SpaceProgram.ADOApp
         public int Crew_ID { get; set; }
         public int Employee_ID { get; set; }
     
-        public virtual Crew Crew { get; set; }
         public virtual Employee Employee { get; set; }
+        public virtual Crew Crew { get; set; }
     }
 }

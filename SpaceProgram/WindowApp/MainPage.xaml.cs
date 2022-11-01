@@ -28,6 +28,9 @@ namespace SpaceProgram.WindowApp
         public static List<Employee> employees { get; set; }
         public static List<Employee> employeesAll { get; set; }
 
+        public static List<Advertisment> advertisments { get; set; }
+        public static List<Advertisment> advertismentsAll { get; set; }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshDataBase();
@@ -36,27 +39,24 @@ namespace SpaceProgram.WindowApp
         public void RefreshDataBase()
         {
             employees = new List<Employee>();
-            employeesAll = new List<Employee>(DBConnection.Connection.Employee.Where(x => x.visiblity != false).ToList());
+            employeesAll = new List<Employee>(DBConnection.Connection.Employee.Where(x => true).ToList());
+
+            advertisments = new List<Advertisment>();
+            advertismentsAll = new List<Advertisment>(DBConnection.Connection.Advertisment.Where(x => true).ToList());
         }
         public void Refresh()
         {
-            cb_cosmodrome.ItemsSource = DBConnection.Connection.Cosmodrome.Select(x => x.Name).ToList();
-            cb_advertisment.ItemsSource = DBConnection.Connection.Advertisment.Select(x => x.Name).ToList();
+            cb_cosmodrome.ItemsSource = DBConnection.Connection.Cosmodrome.ToList();
+            cb_advertisment.ItemsSource = advertismentsAll.ToList();
             cb_employees.ItemsSource = employeesAll.ToList();
-            cb_planet.ItemsSource = DBConnection.Connection.Planet.Select(x => x.Name).ToList();
-            cb_spaceObject.ItemsSource = DBConnection.Connection.SpaceObject.Select(x => x.Name).ToList();
+            cb_planet.ItemsSource = DBConnection.Connection.Planet.ToList();
+            cb_spaceObject.ItemsSource = DBConnection.Connection.SpaceObject.ToList();
 
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //if(cb_employees.SelectedIndex == -1)
-            //{
-            //  return;
-            //}
-           //lb_currentCrew.Items.Add(cb_employees.SelectedItem);
-            //cb_employees.Items.Remove(cb_employees.SelectedItem);
             if (cb_employees.Text != "")
             {
                 var ChecC = cb_employees.SelectedItem as Employee;
@@ -66,6 +66,59 @@ namespace SpaceProgram.WindowApp
                 employees.Add(ChecC);
                 lb_currentCrew.ItemsSource = employees.ToList();
             }
+            Refresh();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (cb_advertisment.Text != "")
+            {
+                var ChecC = cb_advertisment.SelectedItem as Advertisment;
+                advertismentsAll.Remove(ChecC);
+                //DBConnection.Connection.SaveChanges();
+                cb_advertisment.Text = "";
+                advertisments.Add(ChecC);
+                lb_currentAdvertisment.ItemsSource = advertisments.ToList();
+            }
+            Refresh();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if(lb_currentCrew.Items.Count == 0 || cb_cosmodrome.SelectedIndex == -1 || cb_planet.SelectedIndex == -1 || cb_spaceObject.SelectedIndex == -1)
+            {
+                MessageBox.Show("Not all fields are full!");
+                return;
+            }
+
+            Crew newCrew = new Crew();
+            Route newRoute = new Route()
+            {
+                DestinationPlanet_ID = (cb_planet.SelectedItem as Planet).Planet_ID,
+                StartingCosmodrome_ID = (cb_cosmodrome.SelectedItem as Cosmodrome).Cosmodrome_ID,
+            };
+            Flight newFlight = new Flight()
+            {
+                Crew_ID = newCrew.Crew_ID,
+                Route_ID = newRoute.Route_ID,
+                SpaceObject_ID = (cb_spaceObject.SelectedItem as SpaceObject).SpaceObject_Id,
+            };
+
+            foreach(Employee employee in lb_currentCrew.Items)
+            {
+                Crew_Employee newCrewEmployee = new Crew_Employee()
+                {
+                    Crew_ID = newCrew.Crew_ID,
+                    Employee_ID = employee.Employee_ID
+                };
+                DBConnection.Connection.Crew_Employee.Add(newCrewEmployee);
+            }
+            DBConnection.Connection.Crew.Add(newCrew);
+            DBConnection.Connection.Route.Add(newRoute);
+            DBConnection.Connection.Flight.Add(newFlight);
+            DBConnection.Connection.SaveChanges();
+
+            MessageBox.Show("Success");
             Refresh();
         }
     }

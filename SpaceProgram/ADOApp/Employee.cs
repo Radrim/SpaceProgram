@@ -24,7 +24,6 @@ namespace SpaceProgram.ADOApp
         public string Name { get; set; }
         public int Role_ID { get; set; }
         public int Qualification_ID { get; set; }
-        public Nullable<bool> visiblity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Crew_Employee> Crew_Employee { get; set; }

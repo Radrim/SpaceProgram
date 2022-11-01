@@ -9,7 +9,7 @@
       Title="MainPage" Loaded="Page_Loaded">
 
     <Grid>
-        <Button Content="ЗАПУСК" HorizontalAlignment="Left" Margin="627,359,0,0" VerticalAlignment="Top" Height="63" Width="163"/>
+        <Button Content="ЗАПУСК" HorizontalAlignment="Left" Margin="627,359,0,0" VerticalAlignment="Top" Height="63" Width="163" Click="Button_Click_2"/>
         <ComboBox x:Name="cb_employees" HorizontalAlignment="Left" Margin="143,6,0,0" VerticalAlignment="Top" Width="120">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -25,17 +25,47 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Content="Добавить в экипаж" HorizontalAlignment="Left" Margin="143,46,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
-        <ComboBox x:Name="cb_cosmodrome" HorizontalAlignment="Left" Margin="143,92,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cb_planet" HorizontalAlignment="Left" Margin="143,135,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cb_spaceObject" HorizontalAlignment="Left" Margin="143,184,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cb_cosmodrome" HorizontalAlignment="Left" Margin="143,92,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="cb_planet" HorizontalAlignment="Left" Margin="143,135,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="cb_spaceObject" HorizontalAlignment="Left" Margin="143,184,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
-        <TextBlock HorizontalAlignment="Left" Margin="71,6,0,0" TextWrapping="Wrap" Text="Crew" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="71,6,0,0" TextWrapping="Wrap" Text="Crew" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="48,95,0,0" TextWrapping="Wrap" Text="Cosmodrome" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="67,138,0,0" TextWrapping="Wrap" Text="Planet" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="67,187,0,0" TextWrapping="Wrap" Text="SpaceObject" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cb_advertisment" HorizontalAlignment="Left" Margin="143,250,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cb_advertisment" HorizontalAlignment="Left" Margin="143,250,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="63,253,0,0" TextWrapping="Wrap" Text="Advertisment" VerticalAlignment="Top" RenderTransformOrigin="0.552,-0.664"/>
-        <ListBox x:Name="lb_currentAdvertisment" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="298,161,218,178"/>
-        <Button Content="Добавить рекламу" HorizontalAlignment="Left" Margin="143,295,0,0" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="lb_currentAdvertisment" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="298,161,218,178">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Добавить рекламу" HorizontalAlignment="Left" Margin="143,295,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
     </Grid>
 </Page>
