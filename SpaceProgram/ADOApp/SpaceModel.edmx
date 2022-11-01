@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище SpaceProgramModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище SpaceProgramModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdvertisingAgent">
           <Key>
             <PropertyRef Name="AdvertisingAgent_ID" />
@@ -58,6 +58,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Role_ID" Type="int" Nullable="false" />
           <Property Name="Qualification_ID" Type="int" Nullable="false" />
+          <Property Name="visiblity" Type="bit" />
         </EntityType>
         <EntityType Name="Flight">
           <Key>
@@ -359,8 +360,7 @@
             <End Role="SpaceObject" EntitySet="SpaceObject" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SpaceProgramModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -415,19 +415,7 @@
           <Property Name="Crew_ID" Type="Int32" Nullable="false" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Crew" Relationship="Self.FK_Crew_Employee_Crew" FromRole="Crew_Employee" ToRole="Crew" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Crew_Employee_Employee" FromRole="Crew_Employee" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="Employee_ID" />
-          </Key>
-          <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Role_ID" Type="Int32" Nullable="false" />
-          <Property Name="Qualification_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Crew_Employee" Relationship="Self.FK_Crew_Employee_Employee" FromRole="Employee" ToRole="Crew_Employee" />
-          <NavigationProperty Name="Qualification" Relationship="Self.FK_Employee_Qualification" FromRole="Employee" ToRole="Qualification" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+          <NavigationProperty Name="Employee" Relationship="SpaceProgramModel.FK_Crew_Employee_Employee" FromRole="Crew_Employee" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Flight">
           <Key>
@@ -466,7 +454,7 @@
           </Key>
           <Property Name="Qualification_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Qualification" FromRole="Qualification" ToRole="Employee" />
+          <NavigationProperty Name="Employee" Relationship="SpaceProgramModel.FK_Employee_Qualification" FromRole="Qualification" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -474,7 +462,7 @@
           </Key>
           <Property Name="Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
+          <NavigationProperty Name="Employee" Relationship="SpaceProgramModel.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Route">
           <Key>
@@ -578,42 +566,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Crew_Employee_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Crew_Employee" Type="Self.Crew_Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Employee_ID" />
-            </Principal>
-            <Dependent Role="Crew_Employee">
-              <PropertyRef Name="Employee_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Qualification">
-          <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Qualification">
-              <PropertyRef Name="Qualification_ID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="Qualification_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Role_ID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="Role_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Flight_Advertisment_Flight">
           <End Role="Flight" Type="Self.Flight" Multiplicity="1" />
           <End Role="Flight_Advertisment" Type="Self.Flight_Advertisment" Multiplicity="*" />
@@ -681,7 +633,6 @@
           <EntitySet Name="Cosmodrome" EntityType="Self.Cosmodrome" />
           <EntitySet Name="Crew" EntityType="Self.Crew" />
           <EntitySet Name="Crew_Employee" EntityType="Self.Crew_Employee" />
-          <EntitySet Name="Employee" EntityType="Self.Employee" />
           <EntitySet Name="Flight" EntityType="Self.Flight" />
           <EntitySet Name="Flight_Advertisment" EntityType="Self.Flight_Advertisment" />
           <EntitySet Name="Planet" EntityType="Self.Planet" />
@@ -711,18 +662,6 @@
             <End Role="Crew" EntitySet="Crew" />
             <End Role="Flight" EntitySet="Flight" />
           </AssociationSet>
-          <AssociationSet Name="FK_Crew_Employee_Employee" Association="Self.FK_Crew_Employee_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Crew_Employee" EntitySet="Crew_Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Qualification" Association="Self.FK_Employee_Qualification">
-            <End Role="Qualification" EntitySet="Qualification" />
-            <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
           <AssociationSet Name="FK_Flight_Advertisment_Flight" Association="Self.FK_Flight_Advertisment_Flight">
             <End Role="Flight" EntitySet="Flight" />
             <End Role="Flight_Advertisment" EntitySet="Flight_Advertisment" />
@@ -743,7 +682,69 @@
             <End Role="SpaceObjectType" EntitySet="SpaceObjectType" />
             <End Role="SpaceObject" EntitySet="SpaceObject" />
           </AssociationSet>
+          <EntitySet Name="Employee" EntityType="SpaceProgramModel.Employee" />
+          <AssociationSet Name="FK_Crew_Employee_Employee" Association="SpaceProgramModel.FK_Crew_Employee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Crew_Employee" EntitySet="Crew_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Qualification" Association="SpaceProgramModel.FK_Employee_Qualification">
+            <End Role="Qualification" EntitySet="Qualification" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="SpaceProgramModel.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Role_ID" Type="Int32" Nullable="false" />
+          <Property Name="Qualification_ID" Type="Int32" Nullable="false" />
+          <Property Name="visiblity" Type="Boolean" />
+          <NavigationProperty Name="Crew_Employee" Relationship="SpaceProgramModel.FK_Crew_Employee_Employee" FromRole="Employee" ToRole="Crew_Employee" />
+          <NavigationProperty Name="Qualification" Relationship="SpaceProgramModel.FK_Employee_Qualification" FromRole="Employee" ToRole="Qualification" />
+          <NavigationProperty Name="Role" Relationship="SpaceProgramModel.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Crew_Employee_Employee">
+          <End Type="SpaceProgramModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="SpaceProgramModel.Crew_Employee" Role="Crew_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Crew_Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Qualification">
+          <End Type="SpaceProgramModel.Qualification" Role="Qualification" Multiplicity="1" />
+          <End Type="SpaceProgramModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualification">
+              <PropertyRef Name="Qualification_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Qualification_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Role">
+          <End Type="SpaceProgramModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="SpaceProgramModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -798,16 +799,6 @@
                 <ScalarProperty Name="Crew_Employee_ID" ColumnName="Crew_Employee_ID" />
                 <ScalarProperty Name="Crew_ID" ColumnName="Crew_ID" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employee">
-            <EntityTypeMapping TypeName="SpaceProgramModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
-                <ScalarProperty Name="Qualification_ID" ColumnName="Qualification_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -891,6 +882,17 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="SpaceProgramModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="visiblity" ColumnName="visiblity" />
+                <ScalarProperty Name="Qualification_ID" ColumnName="Qualification_ID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

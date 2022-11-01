@@ -10,8 +10,20 @@
 
     <Grid>
         <Button Content="ЗАПУСК" HorizontalAlignment="Left" Margin="627,359,0,0" VerticalAlignment="Top" Height="63" Width="163"/>
-        <ComboBox x:Name="cb_employees" HorizontalAlignment="Left" Margin="143,6,0,0" VerticalAlignment="Top" Width="120"/>
-        <ListBox x:Name="lb_currentCrew" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="298,10,218,329"/>
+        <ComboBox x:Name="cb_employees" HorizontalAlignment="Left" Margin="143,6,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ListBox x:Name="lb_currentCrew" Margin="298,10,218,329">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button Content="Добавить в экипаж" HorizontalAlignment="Left" Margin="143,46,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
         <ComboBox x:Name="cb_cosmodrome" HorizontalAlignment="Left" Margin="143,92,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cb_planet" HorizontalAlignment="Left" Margin="143,135,0,0" VerticalAlignment="Top" Width="120"/>
@@ -23,7 +35,6 @@
         <TextBlock HorizontalAlignment="Left" Margin="67,187,0,0" TextWrapping="Wrap" Text="SpaceObject" VerticalAlignment="Top"/>
         <ComboBox x:Name="cb_advertisment" HorizontalAlignment="Left" Margin="143,250,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="63,253,0,0" TextWrapping="Wrap" Text="Advertisment" VerticalAlignment="Top" RenderTransformOrigin="0.552,-0.664"/>
-        <ListBox x:Name="lb_currentCrew_Copy" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="298,10,218,329"/>
         <ListBox x:Name="lb_currentAdvertisment" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="298,161,218,178"/>
         <Button Content="Добавить рекламу" HorizontalAlignment="Left" Margin="143,295,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>

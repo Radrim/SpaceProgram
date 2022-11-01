@@ -31,7 +31,6 @@ namespace SpaceProgram.ADOApp
         public virtual DbSet<Cosmodrome> Cosmodrome { get; set; }
         public virtual DbSet<Crew> Crew { get; set; }
         public virtual DbSet<Crew_Employee> Crew_Employee { get; set; }
-        public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Flight> Flight { get; set; }
         public virtual DbSet<Flight_Advertisment> Flight_Advertisment { get; set; }
         public virtual DbSet<Planet> Planet { get; set; }
@@ -41,5 +40,6 @@ namespace SpaceProgram.ADOApp
         public virtual DbSet<SpaceObject> SpaceObject { get; set; }
         public virtual DbSet<SpaceObjectType> SpaceObjectType { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
     }
 }
