@@ -31,6 +31,8 @@ namespace SpaceProgram.WindowApp
         public static List<Advertisment> advertisments { get; set; }
         public static List<Advertisment> advertismentsAll { get; set; }
 
+        private decimal previousSpaceObjCost = 0;
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshDataBase();
@@ -51,6 +53,7 @@ namespace SpaceProgram.WindowApp
             cb_employees.ItemsSource = employeesAll.ToList();
             cb_planet.ItemsSource = DBConnection.Connection.Planet.ToList();
             cb_spaceObject.ItemsSource = DBConnection.Connection.SpaceObject.ToList();
+            tb_totalBalance.Text = DBConnection.Connection.Balance.FirstOrDefault().TotalCash.ToString();
 
         }
 
@@ -65,8 +68,8 @@ namespace SpaceProgram.WindowApp
                 cb_employees.Text = "";
                 employees.Add(ChecC);
                 lb_currentCrew.ItemsSource = employees.ToList();
+                Refresh();
             }
-            Refresh();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -76,11 +79,12 @@ namespace SpaceProgram.WindowApp
                 var ChecC = cb_advertisment.SelectedItem as Advertisment;
                 advertismentsAll.Remove(ChecC);
                 //DBConnection.Connection.SaveChanges();
+                tb_PotentialIncome.Text = (decimal.Parse(tb_PotentialIncome.Text) + ChecC.Income).ToString();
                 cb_advertisment.Text = "";
                 advertisments.Add(ChecC);
                 lb_currentAdvertisment.ItemsSource = advertisments.ToList();
+                Refresh();
             }
-            Refresh();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -92,11 +96,13 @@ namespace SpaceProgram.WindowApp
             }
 
             Crew newCrew = new Crew();
+
             Route newRoute = new Route()
             {
                 DestinationPlanet_ID = (cb_planet.SelectedItem as Planet).Planet_ID,
                 StartingCosmodrome_ID = (cb_cosmodrome.SelectedItem as Cosmodrome).Cosmodrome_ID,
             };
+
             Flight newFlight = new Flight()
             {
                 Crew_ID = newCrew.Crew_ID,
@@ -111,14 +117,46 @@ namespace SpaceProgram.WindowApp
                     Crew_ID = newCrew.Crew_ID,
                     Employee_ID = employee.Employee_ID
                 };
+
                 DBConnection.Connection.Crew_Employee.Add(newCrewEmployee);
             }
             DBConnection.Connection.Crew.Add(newCrew);
             DBConnection.Connection.Route.Add(newRoute);
             DBConnection.Connection.Flight.Add(newFlight);
+            DBConnection.Connection.Balance.FirstOrDefault().TotalCash += decimal.Parse(tb_PotentialIncome.Text);
             DBConnection.Connection.SaveChanges();
 
             MessageBox.Show("Success");
+
+            ClearFields();
+        }
+
+        private void cb_spaceObject_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cb_spaceObject.SelectedIndex == -1)
+            {
+                return;
+            }
+            tb_PotentialIncome.Text = (Convert.ToDecimal(tb_PotentialIncome.Text) + previousSpaceObjCost).ToString();
+
+            previousSpaceObjCost = (cb_spaceObject.SelectedItem as SpaceObject).Cost;
+
+            tb_PotentialIncome.Text = (Convert.ToDecimal(tb_PotentialIncome.Text) - previousSpaceObjCost).ToString();
+
+
+        }
+
+        private void ClearFields()
+        {
+            cb_advertisment.SelectedIndex = -1;
+            cb_cosmodrome.SelectedIndex = -1;
+            cb_employees.SelectedIndex = -1;
+            cb_planet.SelectedIndex = -1;
+            cb_spaceObject.SelectedIndex = -1;
+            tb_PotentialIncome.Text = "0";
+            RefreshDataBase();
+            lb_currentCrew.ItemsSource = employees;
+            lb_currentAdvertisment.ItemsSource = advertisments;
             Refresh();
         }
     }
