@@ -43,7 +43,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="5,42,0,0" TextWrapping="Wrap" Text="Crew" VerticalAlignment="Top" Width="33"/>
         <TextBlock HorizontalAlignment="Left" Margin="5,96,0,0" TextWrapping="Wrap" Text="Cosmodrome" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="9,139,0,0" TextWrapping="Wrap" Text="Planet" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="5,14,0,0" TextWrapping="Wrap" Text="SpaceObject" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,14,0,0" TextWrapping="Wrap" Text="Space object" VerticalAlignment="Top"/>
         <ComboBox x:Name="cb_advertisment" HorizontalAlignment="Left" Margin="100,180,0,0" VerticalAlignment="Top" Width="120">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -62,8 +62,8 @@
         </ListBox>
 
         <Button Content="Добавить рекламу" HorizontalAlignment="Left" Margin="100,202,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="56,359,0,0" TextWrapping="Wrap" Text="Potential income" VerticalAlignment="Top"/>
-        <TextBlock x:Name="tb_PotentialIncome" HorizontalAlignment="Left" Margin="150,359,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="9,257,0,0" TextWrapping="Wrap" Text="Potential income" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tb_PotentialIncome" HorizontalAlignment="Left" Margin="103,257,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="645,17,0,0" TextWrapping="Wrap" Text="Total balance" VerticalAlignment="Top"/>
         <TextBlock x:Name="tb_totalBalance" HorizontalAlignment="Left" Margin="719,17,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
         <ListBox x:Name="lb_currentCrew" Margin="257,34,260,346">
