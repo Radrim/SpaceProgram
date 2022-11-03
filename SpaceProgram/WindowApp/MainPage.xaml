@@ -17,13 +17,6 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ListBox x:Name="lb_currentCrew" Margin="298,10,218,329">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
         <Button Content="Добавить в экипаж" HorizontalAlignment="Left" Margin="143,46,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
         <ComboBox x:Name="cb_cosmodrome" HorizontalAlignment="Left" Margin="143,92,0,0" VerticalAlignment="Top" Width="120">
             <ComboBox.ItemTemplate>
@@ -58,18 +51,27 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBlock HorizontalAlignment="Left" Margin="63,253,0,0" TextWrapping="Wrap" Text="Advertisment" VerticalAlignment="Top" RenderTransformOrigin="0.552,-0.664"/>
-        <ListBox x:Name="lb_currentAdvertisment" Margin="298,161,218,178">
+        <TextBlock HorizontalAlignment="Left" Margin="63,250,0,0" TextWrapping="Wrap" Text="Advertisment" VerticalAlignment="Top" RenderTransformOrigin="0.552,-0.664"/>
+
+        <ListBox x:Name="lb_currentAdvertisment" Margin="300,240,220,135">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        
         <Button Content="Добавить рекламу" HorizontalAlignment="Left" Margin="143,295,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
         <TextBlock HorizontalAlignment="Left" Margin="56,359,0,0" TextWrapping="Wrap" Text="Potential income" VerticalAlignment="Top"/>
         <TextBlock x:Name="tb_PotentialIncome" HorizontalAlignment="Left" Margin="150,359,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="645,17,0,0" TextWrapping="Wrap" Text="Total balance" VerticalAlignment="Top"/>
         <TextBlock x:Name="tb_totalBalance" HorizontalAlignment="Left" Margin="719,17,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lb_currentCrew" Margin="300,6,220,342">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>
