@@ -41,7 +41,7 @@ namespace SpaceProgram.WindowApp
         public void RefreshDataBase()
         {
             employees = new List<Employee>();
-            employeesAll = new List<Employee>(DBConnection.Connection.Employee.Where(x => true).ToList());
+            employeesAll = new List<Employee>(DBConnection.Connection.Employee.Where(x => x.Role.Name == "Космонавт").ToList());
 
             advertisments = new List<Advertisment>();
             advertismentsAll = new List<Advertisment>(DBConnection.Connection.Advertisment.Where(x => true).ToList());
@@ -60,6 +60,12 @@ namespace SpaceProgram.WindowApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if((cb_spaceObject.SelectedItem as SpaceObject).SpaceObjectType.Type_Name == "Спутник")
+            {
+                MessageBox.Show("Sattelite can't have an inner crew!");
+                return;
+            }
+
             if (cb_employees.Text != "")
             {
                 var ChecC = cb_employees.SelectedItem as Employee;
@@ -89,9 +95,14 @@ namespace SpaceProgram.WindowApp
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if(lb_currentCrew.Items.Count == 0 || cb_cosmodrome.SelectedIndex == -1 || cb_planet.SelectedIndex == -1 || cb_spaceObject.SelectedIndex == -1)
+            if(cb_cosmodrome.SelectedIndex == -1 || cb_planet.SelectedIndex == -1 || cb_spaceObject.SelectedIndex == -1)
             {
                 MessageBox.Show("Not all fields are full!");
+                return;
+            }
+            if((cb_spaceObject.SelectedItem as SpaceObject).SpaceObjectType.Type_Name != "Спутник" && lb_currentCrew.Items.Count == 0)
+            {
+                MessageBox.Show("Your space ship doesn't have a crew!");
                 return;
             }
 
