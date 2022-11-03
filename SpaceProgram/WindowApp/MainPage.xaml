@@ -10,29 +10,29 @@
 
     <Grid>
         <Button Content="ЗАПУСК" HorizontalAlignment="Left" Margin="627,359,0,0" VerticalAlignment="Top" Height="63" Width="163" Click="Button_Click_2"/>
-        <ComboBox x:Name="cb_employees" HorizontalAlignment="Left" Margin="143,6,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="cb_employees" HorizontalAlignment="Left" Margin="98,42,0,0" VerticalAlignment="Top" Width="122">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Content="Добавить в экипаж" HorizontalAlignment="Left" Margin="143,46,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
-        <ComboBox x:Name="cb_cosmodrome" HorizontalAlignment="Left" Margin="143,92,0,0" VerticalAlignment="Top" Width="120">
+        <Button Content="Добавить в экипаж" HorizontalAlignment="Left" Margin="98,64,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click"/>
+        <ComboBox x:Name="cb_cosmodrome" HorizontalAlignment="Left" Margin="100,93,0,0" VerticalAlignment="Top" Width="120">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox x:Name="cb_planet" HorizontalAlignment="Left" Margin="143,135,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="cb_planet" HorizontalAlignment="Left" Margin="100,136,0,0" VerticalAlignment="Top" Width="120">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox x:Name="cb_spaceObject" HorizontalAlignment="Left" Margin="143,184,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cb_spaceObject_SelectionChanged">
+        <ComboBox x:Name="cb_spaceObject" HorizontalAlignment="Left" Margin="100,11,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cb_spaceObject_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
@@ -40,33 +40,33 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-            <TextBlock HorizontalAlignment="Left" Margin="71,6,0,0" TextWrapping="Wrap" Text="Crew" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="48,95,0,0" TextWrapping="Wrap" Text="Cosmodrome" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="67,138,0,0" TextWrapping="Wrap" Text="Planet" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="67,187,0,0" TextWrapping="Wrap" Text="SpaceObject" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cb_advertisment" HorizontalAlignment="Left" Margin="143,250,0,0" VerticalAlignment="Top" Width="120">
+        <TextBlock HorizontalAlignment="Left" Margin="5,42,0,0" TextWrapping="Wrap" Text="Crew" VerticalAlignment="Top" Width="33"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,96,0,0" TextWrapping="Wrap" Text="Cosmodrome" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="9,139,0,0" TextWrapping="Wrap" Text="Planet" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,14,0,0" TextWrapping="Wrap" Text="SpaceObject" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cb_advertisment" HorizontalAlignment="Left" Margin="100,180,0,0" VerticalAlignment="Top" Width="120">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBlock HorizontalAlignment="Left" Margin="63,250,0,0" TextWrapping="Wrap" Text="Advertisment" VerticalAlignment="Top" RenderTransformOrigin="0.552,-0.664"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,180,0,0" TextWrapping="Wrap" Text="Advertisment" VerticalAlignment="Top" RenderTransformOrigin="0.552,-0.664"/>
 
-        <ListBox x:Name="lb_currentAdvertisment" Margin="300,240,220,135">
+        <ListBox x:Name="lb_currentAdvertisment" Margin="257,174,260,201">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
-        <Button Content="Добавить рекламу" HorizontalAlignment="Left" Margin="143,295,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
+
+        <Button Content="Добавить рекламу" HorizontalAlignment="Left" Margin="100,202,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_1"/>
         <TextBlock HorizontalAlignment="Left" Margin="56,359,0,0" TextWrapping="Wrap" Text="Potential income" VerticalAlignment="Top"/>
         <TextBlock x:Name="tb_PotentialIncome" HorizontalAlignment="Left" Margin="150,359,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="645,17,0,0" TextWrapping="Wrap" Text="Total balance" VerticalAlignment="Top"/>
         <TextBlock x:Name="tb_totalBalance" HorizontalAlignment="Left" Margin="719,17,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lb_currentCrew" Margin="300,6,220,342">
+        <ListBox x:Name="lb_currentCrew" Margin="257,34,260,346">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
