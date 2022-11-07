@@ -73,5 +73,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <TextBlock HorizontalAlignment="Left" Margin="257,18,0,0" TextWrapping="Wrap" Text="Crew members" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="257,158,0,0" TextWrapping="Wrap" Text="Advertisement" VerticalAlignment="Top"/>
     </Grid>
 </Page>
