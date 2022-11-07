@@ -60,13 +60,19 @@ namespace SpaceProgram.WindowApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if((cb_spaceObject.SelectedItem as SpaceObject).SpaceObjectType.Type_Name == "Спутник")
+            if(cb_spaceObject.SelectedIndex == -1) // если косм.объект не выбран
+            {
+                MessageBox.Show("Choose space object first!");
+                return;
+            }
+
+            if((cb_spaceObject.SelectedItem as SpaceObject).SpaceObjectType.Type_Name == "Спутник") // если косм.объект - спутник, экмпажа быть не должно
             {
                 MessageBox.Show("Sattelite can't have an inner crew!");
                 return;
             }
 
-            if (cb_employees.Text != "")
+            if (cb_employees.Text != "") // проверка на выбранный элемент в выпадающем списке
             {
                 var ChecC = cb_employees.SelectedItem as Employee;
                 employeesAll.Remove(ChecC);
